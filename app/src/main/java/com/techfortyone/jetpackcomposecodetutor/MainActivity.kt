@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -36,20 +37,28 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MainScreen() {
-    Row(
+    Column(
         modifier = Modifier.fillMaxSize(),
-        horizontalArrangement = Arrangement.SpaceEvenly, verticalAlignment = Alignment.CenterVertically
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Button(onClick = { /*TODO*/ }) {
-            Text(text = "Click me")
-        }
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Button(onClick = { /*TODO*/ }) {
+                Text(text = "Click me")
+            }
 
-        Text(text = "0")
+            Text(text = "0")
 
-        Button(onClick = { /*TODO*/ }) {
-            Text(text = "Click me")
+            Button(onClick = { /*TODO*/ }) {
+                Text(text = "Click me")
+            }
         }
     }
+
 
 }
 
