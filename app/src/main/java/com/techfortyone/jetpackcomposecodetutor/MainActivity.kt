@@ -37,6 +37,13 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MainScreen() {
+    var count = 0
+    var incrementCounter = {
+        count++
+    }
+    var decrementCounter = {
+        count--
+    }
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
@@ -47,14 +54,14 @@ fun MainScreen() {
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Button(onClick = { /*TODO*/ }) {
-                Text(text = "Click me")
+            Button(onClick = { incrementCounter.invoke()}) {
+                Text(text = "Increment Counter")
             }
 
-            Text(text = "0")
+            Text(text = "${count.toString()}")
 
-            Button(onClick = { /*TODO*/ }) {
-                Text(text = "Click me")
+            Button(onClick = { decrementCounter.invoke() }) {
+                Text(text = "Decrement Counter")
             }
         }
     }
