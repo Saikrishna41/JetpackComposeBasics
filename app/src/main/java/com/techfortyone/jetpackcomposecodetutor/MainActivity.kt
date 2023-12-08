@@ -13,8 +13,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -40,14 +43,14 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainScreen() {
     //count is a state
-    var count = remember {
+    var count by rememberSaveable {
         mutableStateOf(0)
     }
     var incrementCounter = {
-        count.value = count.value.plus(1)
+        count = count.plus(1)
     }
     var decrementCounter = {
-        count.value = count.value.minus(1)
+        count = count.minus(1)
     }
     Column(
         modifier = Modifier.fillMaxSize(),
@@ -63,7 +66,7 @@ fun MainScreen() {
                 Text(text = "Increment Counter")
             }
 
-            Text(text = "${count.value.toString()}")
+            Text(text = count.toString())
 
             Button(onClick = { decrementCounter.invoke() }) {
                 Text(text = "Decrement Counter")
