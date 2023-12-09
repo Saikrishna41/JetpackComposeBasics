@@ -1,6 +1,7 @@
 package com.techfortyone.jetpackcomposecodetutor
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -31,6 +32,7 @@ import com.techfortyone.jetpackcomposecodetutor.viewmodel.MainViewModel
 class MainActivity : ComponentActivity() {
 
     private val mainViewModel by viewModels<MainViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -51,6 +53,9 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun MainScreen(mainViewModel: MainViewModel) {
     mainViewModel.counter.observeAsState().value
+    mainViewModel.error.observeAsState().value?.let {
+        Toast.makeText(LocalContext.current, it.toString(), Toast.LENGTH_SHORT).show()
+    }
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
