@@ -3,6 +3,7 @@ package com.techfortyone.jetpackcomposecodetutor
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -29,7 +30,7 @@ import com.techfortyone.jetpackcomposecodetutor.viewmodel.MainViewModel
 
 class MainActivity : ComponentActivity() {
 
-
+    private val mainViewModel by viewModels<MainViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -40,7 +41,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MainScreen(MainViewModel())
+                    MainScreen(mainViewModel)
                 }
             }
         }
@@ -49,9 +50,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MainScreen(mainViewModel: MainViewModel) {
-    mainViewModel.counter.observeAsState().value.let {
-
-    }
+    mainViewModel.counter.observeAsState().value
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
